@@ -2,8 +2,8 @@
 {
     public enum DataStatus
     {
-        Unknown = 0,
-        Active = 1,
-        Passive = 2,
+        Unknown,//Pek kullanılmayacak ama yinede tanımlı
+        Active,//Tur,etkinlik,ikram,araç veya başka bir nesne kullanımdaysa
+        Passive,//Değilse
     }
 }

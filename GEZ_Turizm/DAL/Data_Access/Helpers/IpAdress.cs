@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Microsoft.AspNetCore.Http;
 
 namespace Data_Access.Helpers
 {//Oluşturma veya güncelleme işlemleri yapan bilgisayarın IP adresini alabilmek için kullanılacak.
