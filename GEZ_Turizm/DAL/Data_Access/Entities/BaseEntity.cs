@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Data_Access.Entities.Abstracts;
 using Data_Access.Entities.Enums;
+using Data_Access.Helpers;
 
 namespace Data_Access.Entities
 {
@@ -10,9 +11,9 @@ namespace Data_Access.Entities
         {
             UniqueIdentify = Guid.NewGuid();
             CreatedTime = DateTime.Now;
-            CreatedIPAdress = "";//Güncellenecek
-            CreatedComputerName = "";//Güncellenecek
-        }
+            CreatedIPAdress = IpAdress.GetIpAddress();
+            CreatedComputerName = System.Environment.MachineName;
+        }//Güncellenecek
 
         public int ID { get; set; }
         public Guid UniqueIdentify { get; set; }

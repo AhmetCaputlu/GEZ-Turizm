@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="Configurations\" />
-    <Folder Include="Helpers\" />
     <Folder Include="SeedData\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
