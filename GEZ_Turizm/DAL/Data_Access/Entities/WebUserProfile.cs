@@ -13,6 +13,7 @@ namespace Data_Access.Entities
         public string Gender { get; set; }
         public string PhotoPath { get; set; }
         //Mapping
+        public WebUser WebUser { get; set; }
 
     }
 }

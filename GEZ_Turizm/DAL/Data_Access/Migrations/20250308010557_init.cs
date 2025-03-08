@@ -15,7 +15,8 @@ namespace Data_Access.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -29,15 +30,17 @@ namespace Data_Access.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UniqueIdentify = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedIPAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     UpdatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedIPAdress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,41 +63,12 @@ namespace Data_Access.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserDetails",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TCN_PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserTier = table.Column<int>(type: "int", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UniqueIdentify = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedIPAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedIPAdress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserDetails", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -115,7 +89,7 @@ namespace Data_Access.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -137,7 +111,7 @@ namespace Data_Access.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -151,11 +125,45 @@ namespace Data_Access.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUserProfiles",
+                columns: table => new
+                {
+                    CustomID = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TCN_PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserTier = table.Column<int>(type: "int", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UniqueIdentify = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserProfiles", x => x.CustomID);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserProfiles_AspNetUsers_CustomID",
+                        column: x => x.CustomID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -178,7 +186,7 @@ namespace Data_Access.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -247,13 +255,13 @@ namespace Data_Access.Migrations
                 name: "AspNetUserLogins");
 
             migrationBuilder.DropTable(
+                name: "AspNetUserProfiles");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "UserDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

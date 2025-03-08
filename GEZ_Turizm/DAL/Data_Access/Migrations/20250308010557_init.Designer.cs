@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access.Migrations
 {
     [DbContext(typeof(GEZContext))]
-    [Migration("20250307234636_init")]
+    [Migration("20250308010557_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,9 +27,11 @@ namespace Data_Access.Migrations
 
             modelBuilder.Entity("Data_Access.Entities.WebUser", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -45,7 +47,7 @@ namespace Data_Access.Migrations
                     b.Property<Guid>("CreatedID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedIPAdress")
+                    b.Property<string>("CreatedIPAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -91,13 +93,16 @@ namespace Data_Access.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("UniqueIdentify")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("UpdatedComputerName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UpdatedID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UpdatedIPAdress")
+                    b.Property<string>("UpdatedIPAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedTime")
@@ -123,11 +128,8 @@ namespace Data_Access.Migrations
 
             modelBuilder.Entity("Data_Access.Entities.WebUserProfile", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("CustomID")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -139,7 +141,7 @@ namespace Data_Access.Migrations
                     b.Property<Guid>("CreatedID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedIPAdress")
+                    b.Property<string>("CreatedIPAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -178,7 +180,7 @@ namespace Data_Access.Migrations
                     b.Property<Guid?>("UpdatedID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UpdatedIPAdress")
+                    b.Property<string>("UpdatedIPAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedTime")
@@ -187,16 +189,18 @@ namespace Data_Access.Migrations
                     b.Property<int>("UserTier")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("CustomID");
 
-                    b.ToTable("UserDetails");
+                    b.ToTable("AspNetUserProfiles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -220,7 +224,7 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -234,8 +238,8 @@ namespace Data_Access.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -244,7 +248,7 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -258,8 +262,8 @@ namespace Data_Access.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -268,7 +272,7 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -279,8 +283,8 @@ namespace Data_Access.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -289,13 +293,13 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -304,10 +308,10 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -323,16 +327,27 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Data_Access.Entities.WebUserProfile", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Data_Access.Entities.WebUser", "WebUser")
+                        .WithOne("WebUserProfile")
+                        .HasForeignKey("Data_Access.Entities.WebUserProfile", "CustomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WebUser");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("Data_Access.Entities.WebUser", null)
                         .WithMany()
@@ -341,7 +356,7 @@ namespace Data_Access.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("Data_Access.Entities.WebUser", null)
                         .WithMany()
@@ -350,9 +365,9 @@ namespace Data_Access.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,12 +380,18 @@ namespace Data_Access.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("Data_Access.Entities.WebUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.WebUser", b =>
+                {
+                    b.Navigation("WebUserProfile")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
