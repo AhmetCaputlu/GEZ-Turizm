@@ -32,7 +32,7 @@ namespace Data_Access.Context
         }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            modelbuilder.Entity<WebUser>().Ignore(x => x.UniqueIdentify);
+            //modelbuilder.Entity<WebUser>().Ignore(x => x.UniqueIdentify);
             modelbuilder.Entity<WebUserProfile>().HasKey(x => x.UniqueIdentify);
 
             modelbuilder.Entity<WebUserProfile>().
