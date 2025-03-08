@@ -5,6 +5,7 @@ namespace Data_Access.Entities
 {
     public class WebUserProfile:BaseEntity
     {
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string TCN_PassportNumber{ get; set; }//Kimlik numarası veya pasaport bilgileri

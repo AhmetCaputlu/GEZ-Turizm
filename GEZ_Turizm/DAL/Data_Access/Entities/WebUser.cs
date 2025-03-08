@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Data_Access.Entities
 {
-    public class WebUser : IdentityUser<int>, IEntity
+    public class WebUser : IdentityUser<Guid>, IEntity
         //Kayıt yapan veya güncellenen kullanıcıların ID,IP ve bilgisayar adı alınmayacak.
         //Bu property'ler şirket içi çalışanları takip edebilmek amacıyla var çünkü.(Sadece Created time bilgisi alınacak)
         //Ancak kullanıcı taraflı değil de yetkilendireceğim idari birim tarafından bir güncelleme yapılırsa kaydedilecek.(BLL)
@@ -13,8 +13,8 @@ namespace Data_Access.Entities
         //Email
         //Şifre
         //TelNo halihazırda geliyor.
-        [NotMapped]//IdentityUser'dan gelen int Id kullanılacağı için bu olmamalı
         public int CustomID { get; set; }
+        [NotMapped]
         public Guid UniqueIdentify { get; set; }
         public DateTime CreatedTime { get; set; }      
         public Guid CreatedID { get; set; } 

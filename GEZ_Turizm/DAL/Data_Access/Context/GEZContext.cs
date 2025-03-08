@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Data_Access.Context
 {
-    public class GEZContext:IdentityDbContext<WebUser,IdentityRole<int>,int>
+    public class GEZContext:IdentityDbContext<WebUser,IdentityRole<Guid>,Guid>
         //Varsayılan string olduğu için düzenleme gerekiyor
     {
         public GEZContext()
@@ -32,11 +32,15 @@ namespace Data_Access.Context
         }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            modelbuilder.Entity<WebUserProfile>().HasKey(x => x.CustomID);
-            modelbuilder.Entity<WebUserProfile>().
-            HasOne(x => x.WebUser).WithOne(x => x.WebUserProfile).HasForeignKey<WebUserProfile>(x => x.CustomID);
+            modelbuilder.Entity<WebUser>().Ignore(x => x.UniqueIdentify);
+            modelbuilder.Entity<WebUserProfile>().HasKey(x => x.UniqueIdentify);
 
+            modelbuilder.Entity<WebUserProfile>().
+            HasOne(x => x.WebUser).WithOne(x => x.WebUserProfile).HasForeignKey<WebUserProfile>(x => x.UniqueIdentify);
             
+
+
+
             base.OnModelCreating(modelbuilder);
         }
     }
