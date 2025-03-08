@@ -1,4 +1,7 @@
-﻿using Data_Access.Entities;
+﻿using Data_Access.Configurations;
+using Data_Access.Configurations.Abstracts;
+using Data_Access.Entities;
+using Data_Access.Entities.Abstracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -32,15 +35,8 @@ namespace Data_Access.Context
         }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            //modelbuilder.Entity<WebUser>().Ignore(x => x.UniqueIdentify);
-            modelbuilder.Entity<WebUserProfile>().HasKey(x => x.UniqueIdentify);
-
-            modelbuilder.Entity<WebUserProfile>().
-            HasOne(x => x.WebUser).WithOne(x => x.WebUserProfile).HasForeignKey<WebUserProfile>(x => x.UniqueIdentify);
-            
-
-
-
+            modelbuilder.ApplyConfiguration(new WebUserConfiguration());
+            modelbuilder.ApplyConfiguration(new WebUserProfileConfiguration());
             base.OnModelCreating(modelbuilder);
         }
     }

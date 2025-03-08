@@ -14,7 +14,7 @@ namespace Data_Access.Entities
         //Şifre
         //TelNo halihazırda geliyor.
         public int CustomID { get; set; }
-        [NotMapped]
+        [NotMapped]//Identity User ile miras yoluyla GUID tipinde bir Id alacağımız için buna WebUser nesnesinde ihtiyacımız yok.
         public Guid UniqueIdentify { get; set; }
         public DateTime CreatedTime { get; set; }      
         public Guid CreatedID { get; set; } 
@@ -31,4 +31,4 @@ namespace Data_Access.Entities
         //Mapping
         public WebUserProfile WebUserProfile { get; set; }
     }
-}
+}//todo:Kullanıcı ve kullanıcı profiliyle çalışma kolaylığı olması için CustomId propertylerini kullanıyoruz.BLL katmanında aktarma yapılması gerekicek.Örn 184 Custom Id'si olan kullanıcının Profilinin de CustomId'si 184 olmalı.Sadece bir tabloda bir PK olabildiği için Custom Id eşlenemedi (BLL)

@@ -37,14 +37,16 @@ namespace Data_Access.Migrations
 
                     b.Property<string>("CreatedComputerName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid>("CreatedID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedIPAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
@@ -92,13 +94,15 @@ namespace Data_Access.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UpdatedComputerName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid?>("UpdatedID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UpdatedIPAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime?>("UpdatedTime")
                         .HasColumnType("datetime2");
@@ -131,14 +135,16 @@ namespace Data_Access.Migrations
 
                     b.Property<string>("CreatedComputerName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid>("CreatedID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedIPAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
@@ -148,35 +154,40 @@ namespace Data_Access.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PhotoPath")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("TCN_PassportNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("UpdatedComputerName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid?>("UpdatedID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UpdatedIPAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime?>("UpdatedTime")
                         .HasColumnType("datetime2");
@@ -325,7 +336,7 @@ namespace Data_Access.Migrations
                     b.HasOne("Data_Access.Entities.WebUser", "WebUser")
                         .WithOne("WebUserProfile")
                         .HasForeignKey("Data_Access.Entities.WebUserProfile", "UniqueIdentify")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("WebUser");

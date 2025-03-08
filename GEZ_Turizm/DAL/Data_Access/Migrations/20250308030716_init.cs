@@ -33,12 +33,12 @@ namespace Data_Access.Migrations
                     CustomID = table.Column<int>(type: "int", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedComputerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CreatedIPAddress = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedComputerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdatedIPAddress = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -127,22 +127,22 @@ namespace Data_Access.Migrations
                 columns: table => new
                 {
                     UniqueIdentify = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TCN_PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TCN_PassportNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     UserTier = table.Column<int>(type: "int", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    PhotoPath = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     CustomID = table.Column<int>(type: "int", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedComputerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CreatedIPAddress = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedComputerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedIPAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedComputerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdatedIPAddress = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -152,8 +152,7 @@ namespace Data_Access.Migrations
                         name: "FK_AspNetUserProfiles_AspNetUsers_UniqueIdentify",
                         column: x => x.UniqueIdentify,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

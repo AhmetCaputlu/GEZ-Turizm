@@ -11,7 +11,7 @@ namespace Data_Access.Entities
         public string TCN_PassportNumber{ get; set; }//Kimlik numarası veya pasaport bilgileri
         public Tier UserTier { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
         public string PhotoPath { get; set; }
         //Mapping
         public WebUser WebUser { get; set; }

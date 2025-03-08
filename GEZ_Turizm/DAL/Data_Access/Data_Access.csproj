@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="SeedData\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
