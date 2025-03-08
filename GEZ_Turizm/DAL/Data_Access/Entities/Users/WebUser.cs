@@ -3,12 +3,12 @@ using Data_Access.Entities.Abstracts;
 using Data_Access.Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 
-namespace Data_Access.Entities
+namespace Data_Access.Entities.Users
 {
     public class WebUser : IdentityUser<Guid>, IEntity
-        //Kayıt yapan veya güncellenen kullanıcıların ID,IP ve bilgisayar adı alınmayacak.
-        //Bu property'ler şirket içi çalışanları takip edebilmek amacıyla var çünkü.(Sadece Created time bilgisi alınacak)
-        //Ancak kullanıcı taraflı değil de yetkilendireceğim idari birim tarafından bir güncelleme yapılırsa kaydedilecek.(BLL)
+    //Kayıt yapan veya güncellenen kullanıcıların ID,IP ve bilgisayar adı alınmayacak.
+    //Bu property'ler şirket içi çalışanları takip edebilmek amacıyla var çünkü.(Sadece Created time bilgisi alınacak)
+    //Ancak kullanıcı taraflı değil de yetkilendireceğim idari birim tarafından bir güncelleme yapılırsa kaydedilecek.(BLL)
     {
         //Email
         //Şifre
@@ -16,9 +16,9 @@ namespace Data_Access.Entities
         public int CustomID { get; set; }
         [NotMapped]//Identity User ile miras yoluyla GUID tipinde bir Id alacağımız için buna WebUser nesnesinde ihtiyacımız yok.
         public Guid UniqueIdentify { get; set; }
-        public DateTime CreatedTime { get; set; }      
-        public Guid CreatedID { get; set; } 
-        public string CreatedComputerName { get; set; }        
+        public DateTime CreatedTime { get; set; }
+        public Guid CreatedID { get; set; }
+        public string CreatedComputerName { get; set; }
         public string CreatedIPAddress { get; set; }
         public DateTime? UpdatedTime { get; set; }
         public Guid? UpdatedID { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Data_Access.Configurations.Abstracts;
-using Data_Access.Entities;
+using Data_Access.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,6 +11,7 @@ namespace Data_Access.Configurations
         {
             builder.Property(x => x.FirstName).HasMaxLength(40);
             builder.Property(x => x.LastName).HasMaxLength(50);
+            builder.Property(x => x.PhoneNumber).HasMaxLength(11);
             builder.Property(x => x.TCN_PassportNumber).HasMaxLength(11);//Pasaport zaten maks 10 karakter olabilir.TC No baz alındı.
             builder.Property(x => x.PhotoPath).HasMaxLength(255);
             //Mapping

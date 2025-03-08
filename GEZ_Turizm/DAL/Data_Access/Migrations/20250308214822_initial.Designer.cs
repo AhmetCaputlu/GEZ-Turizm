@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access.Migrations
 {
     [DbContext(typeof(GEZContext))]
-    [Migration("20250308030716_init")]
-    partial class init
+    [Migration("20250308214822_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,179 @@ namespace Data_Access.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Data_Access.Entities.WebUser", b =>
+            modelBuilder.Entity("Data_Access.Entities.Employees.Employee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedComputerName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("CreatedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedIPAddress")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CurrentDepartment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DaysWorked")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("EndContract")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdatedComputerName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("UpdatedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UpdatedIPAddress")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employee");
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Employees.EmployeeDetail", b =>
+                {
+                    b.Property<Guid>("UniqueIdentify")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Age")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("CreatedComputerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CreatedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedIPAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("PhotoPath")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedComputerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdatedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UpdatedIPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UniqueIdentify");
+
+                    b.ToTable("EmployeeDetail");
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,7 +300,7 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Data_Access.Entities.WebUserProfile", b =>
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUserProfile", b =>
                 {
                     b.Property<Guid>("UniqueIdentify")
                         .HasColumnType("uniqueidentifier");
@@ -168,8 +340,12 @@ namespace Data_Access.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("PhotoPath")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("PhotoPath")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -334,11 +510,22 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Data_Access.Entities.WebUserProfile", b =>
+            modelBuilder.Entity("Data_Access.Entities.Employees.EmployeeDetail", b =>
                 {
-                    b.HasOne("Data_Access.Entities.WebUser", "WebUser")
+                    b.HasOne("Data_Access.Entities.Employees.Employee", "Employee")
+                        .WithOne("EmployeeDetail")
+                        .HasForeignKey("Data_Access.Entities.Employees.EmployeeDetail", "UniqueIdentify")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUserProfile", b =>
+                {
+                    b.HasOne("Data_Access.Entities.Users.WebUser", "WebUser")
                         .WithOne("WebUserProfile")
-                        .HasForeignKey("Data_Access.Entities.WebUserProfile", "UniqueIdentify")
+                        .HasForeignKey("Data_Access.Entities.Users.WebUserProfile", "UniqueIdentify")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -356,7 +543,7 @@ namespace Data_Access.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("Data_Access.Entities.WebUser", null)
+                    b.HasOne("Data_Access.Entities.Users.WebUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,7 +552,7 @@ namespace Data_Access.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("Data_Access.Entities.WebUser", null)
+                    b.HasOne("Data_Access.Entities.Users.WebUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -380,7 +567,7 @@ namespace Data_Access.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data_Access.Entities.WebUser", null)
+                    b.HasOne("Data_Access.Entities.Users.WebUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -389,14 +576,20 @@ namespace Data_Access.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("Data_Access.Entities.WebUser", null)
+                    b.HasOne("Data_Access.Entities.Users.WebUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data_Access.Entities.WebUser", b =>
+            modelBuilder.Entity("Data_Access.Entities.Employees.Employee", b =>
+                {
+                    b.Navigation("EmployeeDetail")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUser", b =>
                 {
                     b.Navigation("WebUserProfile")
                         .IsRequired();

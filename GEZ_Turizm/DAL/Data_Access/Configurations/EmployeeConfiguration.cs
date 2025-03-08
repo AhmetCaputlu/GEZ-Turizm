@@ -1,15 +1,13 @@
-﻿using System.Diagnostics;
-using Data_Access.Configurations.Abstracts;
-using Data_Access.Entities.Abstracts;
-using Data_Access.Entities.Users;
+﻿using Data_Access.Entities.Employees;
+using Data_Access.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Data_Access.Configurations
 {
-    internal class WebUserConfiguration : IEntityTypeConfiguration<WebUser>
+    internal class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {
-        public void Configure(EntityTypeBuilder<WebUser> builder)
+        public void Configure(EntityTypeBuilder<Employee> builder)
         {
             #region Kod Tekrarı
             //WebUser Base Entity'den miras almadığı için bu property'ler yeniden yazıldı.
@@ -19,7 +17,7 @@ namespace Data_Access.Configurations
             builder.Property(x => x.UpdatedIPAddress).HasMaxLength(20);
             #endregion
 
-            builder.Property(x => x.UserName).HasMaxLength(46);
+
         }
     }
 }

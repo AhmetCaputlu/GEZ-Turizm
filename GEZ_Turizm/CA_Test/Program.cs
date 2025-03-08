@@ -1,6 +1,4 @@
-﻿using System.Net;
-using Data_Access.Context;
-using Data_Access.Entities;
+﻿using Data_Access.Context;
 
 class Program
 {

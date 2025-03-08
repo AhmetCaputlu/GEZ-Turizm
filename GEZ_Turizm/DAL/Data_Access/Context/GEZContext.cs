@@ -1,7 +1,7 @@
 ﻿using Data_Access.Configurations;
 using Data_Access.Configurations.Abstracts;
-using Data_Access.Entities;
 using Data_Access.Entities.Abstracts;
+using Data_Access.Entities.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +37,8 @@ namespace Data_Access.Context
         {
             modelbuilder.ApplyConfiguration(new WebUserConfiguration());
             modelbuilder.ApplyConfiguration(new WebUserProfileConfiguration());
+            modelbuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelbuilder.ApplyConfiguration(new EmployeeDetailConfiguration());
             base.OnModelCreating(modelbuilder);
         }
     }
