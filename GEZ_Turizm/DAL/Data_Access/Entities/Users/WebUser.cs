@@ -18,5 +18,7 @@ namespace Data_Access.Entities.Users
         public string UpdatedID { get; set; }
         public string UpdatedIPAddress { get; set; }
         public DataStatus Status { get; set; }
+        //Mapping
+        public WebUserProfile WebUserProfile { get; set; }
     }
 }

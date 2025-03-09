@@ -1,11 +1,10 @@
-﻿using Data_Access.Configurations;
-using Data_Access.Configurations.Abstracts;
-using Data_Access.Entities.Abstracts;
+﻿using Data_Access.Configurations.Employees;
+using Data_Access.Configurations.WebUsers;
+using Data_Access.Entities.Employees;
 using Data_Access.Entities.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Data_Access.Context
 {
@@ -20,6 +19,11 @@ namespace Data_Access.Context
 
         }
         public DbSet<WebUser> AspNetUsers { get; set; }
+        public DbSet<WebUserProfile> AspNetUserProfiles { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeDetail> EmployeeDetails { get; set; }
+
+
                 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,6 +40,8 @@ namespace Data_Access.Context
         {
             modelbuilder.ApplyConfiguration(new WebUserConfiguration());
             modelbuilder.ApplyConfiguration(new WebUserProfileConfiguration());
+            modelbuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelbuilder.ApplyConfiguration(new EmployeeDetailConfiguration());
             
             base.OnModelCreating(modelbuilder);
         }

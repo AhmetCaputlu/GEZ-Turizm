@@ -14,6 +14,7 @@ namespace Data_Access.Entities.Users
         public string PhotoPath { get; set; }
         public DateTime UpdatedDate { get; set; }
         //Mapping
+        public int WebUserId { get; set; }
         public WebUser WebUser { get; set; }
 
     }

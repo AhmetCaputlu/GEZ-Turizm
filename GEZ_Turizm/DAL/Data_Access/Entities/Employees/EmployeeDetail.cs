@@ -10,9 +10,9 @@ namespace Data_Access.Entities.Employees
         public Gender Gender { get; set; }
         public byte Age { get; set; }
         public string Address { get; set; }
-        public string PhoneNumber { get; set; }
         public string PhotoPath { get; set; }
         //Mapping   
+        public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
 
     }

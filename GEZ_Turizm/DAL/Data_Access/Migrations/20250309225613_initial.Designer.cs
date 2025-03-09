@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access.Migrations
 {
     [DbContext(typeof(GEZContext))]
-    [Migration("20250309042818_initial")]
+    [Migration("20250309225613_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -24,6 +24,155 @@ namespace Data_Access.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Data_Access.Entities.Employees.Employee", b =>
+                {
+                    b.Property<int>("CustomID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomID"));
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedID")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("6d787354-85af-4800-becb-c7da582a6554");
+
+                    b.Property<string>("CreatedIPAddress")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasDefaultValue("");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2025, 3, 10, 1, 56, 13, 203, DateTimeKind.Local).AddTicks(93));
+
+                    b.Property<int>("CurrentDepartment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DaysWorked")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("EndContract")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UniqueIdentify")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasDefaultValue("a4aa391e-8e1b-40f7-afc3-b3544959a52e");
+
+                    b.Property<string>("UpdatedID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedIPAddress")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomID");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Employees.EmployeeDetail", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Adres Bilgisi Düzenlenmedi");
+
+                    b.Property<byte>("Age")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)0);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Gender")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("EmployeeDetails");
+                });
 
             modelBuilder.Entity("Data_Access.Entities.Users.WebUser", b =>
                 {
@@ -46,7 +195,7 @@ namespace Data_Access.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(36)
                         .HasColumnType("nvarchar(36)")
-                        .HasDefaultValue("ef9f4f0c-b37c-462f-b93e-c805fe2b4aa5");
+                        .HasDefaultValue("c6927615-eb7b-4352-977e-f23b4e98a7fc");
 
                     b.Property<string>("CreatedIPAddress")
                         .IsRequired()
@@ -58,7 +207,7 @@ namespace Data_Access.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 3, 9, 7, 28, 18, 25, DateTimeKind.Local).AddTicks(6342));
+                        .HasDefaultValue(new DateTime(2025, 3, 10, 1, 56, 13, 202, DateTimeKind.Local).AddTicks(5360));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -112,7 +261,7 @@ namespace Data_Access.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(36)
                         .HasColumnType("nvarchar(36)")
-                        .HasDefaultValue("c3ab82c4-0462-42a7-9c65-8ba1c0832a82");
+                        .HasDefaultValue("233d483f-8946-4eae-a7ec-6f7b2997f6f1");
 
                     b.Property<string>("UpdatedID")
                         .HasMaxLength(36)
@@ -141,6 +290,53 @@ namespace Data_Access.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUserProfile", b =>
+                {
+                    b.Property<int>("WebUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BirthDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Gender")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TCN_PassportNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2025, 3, 10, 1, 56, 13, 202, DateTimeKind.Local).AddTicks(8747));
+
+                    b.Property<int>("UserTier")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.HasKey("WebUserId");
+
+                    b.ToTable("AspNetUserProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -276,6 +472,28 @@ namespace Data_Access.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Data_Access.Entities.Employees.EmployeeDetail", b =>
+                {
+                    b.HasOne("Data_Access.Entities.Employees.Employee", "Employee")
+                        .WithOne("EmployeeDetail")
+                        .HasForeignKey("Data_Access.Entities.Employees.EmployeeDetail", "EmployeeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUserProfile", b =>
+                {
+                    b.HasOne("Data_Access.Entities.Users.WebUser", "WebUser")
+                        .WithOne("WebUserProfile")
+                        .HasForeignKey("Data_Access.Entities.Users.WebUserProfile", "WebUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("WebUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
@@ -324,6 +542,18 @@ namespace Data_Access.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Employees.Employee", b =>
+                {
+                    b.Navigation("EmployeeDetail")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data_Access.Entities.Users.WebUser", b =>
+                {
+                    b.Navigation("WebUserProfile")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

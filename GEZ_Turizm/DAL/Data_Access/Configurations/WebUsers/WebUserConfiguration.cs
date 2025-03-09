@@ -3,7 +3,7 @@ using Data_Access.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Data_Access.Configurations
+namespace Data_Access.Configurations.WebUsers
 {
     internal class WebUserConfiguration : IEntityTypeConfiguration<WebUser>
     {
