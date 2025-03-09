@@ -19,8 +19,8 @@ namespace Data_Access.Context
         {
 
         }
-        public DbSet<WebUser> Users { get; set; }
-        public DbSet<WebUserProfile> AspNetUserProfiles { get; set; }
+        public DbSet<WebUser> AspNetUsers { get; set; }
+                
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -7,20 +7,16 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Data_Access.Entities.Users
 {
-    public class WebUser : IdentityUser<int>, IEntity    
+    public class WebUser : IdentityUser<int>, IEntity
     {
         public int CustomID { get; set; }
         public string UniqueIdentify { get; set; }
         public DateTime CreatedTime { get; set; }
-        public Guid CreatedID { get; set; }
+        public string CreatedID { get; set; }
         public string CreatedIPAddress { get; set; }
-        public DateTime UpdatedTime { get; set; }
-        public Guid UpdatedID { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+        public string UpdatedID { get; set; }
         public string UpdatedIPAddress { get; set; }
         public DataStatus Status { get; set; }
-        //Custom Properties   
-        public string UserName { get; set; }
-        //Mapping
-        public WebUserProfile WebUserProfile { get; set; }
     }
 }

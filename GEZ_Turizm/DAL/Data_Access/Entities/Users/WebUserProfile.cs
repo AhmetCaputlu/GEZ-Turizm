@@ -8,7 +8,6 @@ namespace Data_Access.Entities.Users
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public string PhoneNumber { get; set; }
         public Gender Gender { get; set; }
         public string TCN_PassportNumber { get; set; }
         public Tier UserTier { get; set; }
