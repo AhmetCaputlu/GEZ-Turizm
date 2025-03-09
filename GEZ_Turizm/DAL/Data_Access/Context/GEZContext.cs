@@ -35,6 +35,7 @@ namespace Data_Access.Context
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.ApplyConfiguration(new WebUserConfiguration());
+            modelbuilder.ApplyConfiguration(new WebUserProfileConfiguration());
             
             base.OnModelCreating(modelbuilder);
         }
