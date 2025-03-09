@@ -9,16 +9,15 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Data_Access.Context
 {
-    public class GEZContext:IdentityDbContext<WebUser,IdentityRole<Guid>,Guid>
-        //Varsayılan string olduğu için düzenleme gerekiyor
+    public class GEZContext:IdentityDbContext<WebUser,IdentityRole<int>,int>
     {
         public GEZContext()
         {
-            //Instance alırken kullanılabilir.
+
         }
         public GEZContext(DbContextOptions<GEZContext> options):base(options)
         {
-            //Servis kullanırken bu kullanılabilir.
+
         }
         public DbSet<WebUser> Users { get; set; }
         public DbSet<WebUserProfile> AspNetUserProfiles { get; set; }
@@ -36,9 +35,7 @@ namespace Data_Access.Context
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.ApplyConfiguration(new WebUserConfiguration());
-            modelbuilder.ApplyConfiguration(new WebUserProfileConfiguration());
-            modelbuilder.ApplyConfiguration(new EmployeeConfiguration());
-            modelbuilder.ApplyConfiguration(new EmployeeDetailConfiguration());
+            
             base.OnModelCreating(modelbuilder);
         }
     }
