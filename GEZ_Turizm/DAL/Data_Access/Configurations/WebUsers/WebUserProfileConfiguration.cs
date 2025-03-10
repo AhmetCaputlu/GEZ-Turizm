@@ -17,7 +17,7 @@ namespace Data_Access.Configurations.WebUsers
             builder.Property(x => x.Gender).IsRequired(true).HasDefaultValue(Gender.Unknown);
             builder.Property(x => x.TCN_PassportNumber).HasMaxLength(11).IsRequired(false);
             builder.Property(x => x.UserTier).IsRequired(true).HasDefaultValue(Tier.Basic);
-            builder.Property(x => x.PhotoPath).IsRequired(false);
+            builder.Property(x => x.PhotoPath).HasMaxLength(255).IsRequired(false);
             builder.Property(x => x.UpdatedDate).IsRequired(true).HasDefaultValue(DateTime.Now);
         }
     }

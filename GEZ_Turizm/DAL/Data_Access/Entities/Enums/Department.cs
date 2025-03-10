@@ -7,6 +7,7 @@
         Accounting,//Muhasebe
         Administrative,//İdari birim
         IT,//Yazılım Destek
-        Consulting//Danışma
+        Consulting,//Danışma
+
     }
 }
