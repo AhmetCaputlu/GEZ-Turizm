@@ -1,7 +1,12 @@
-﻿using Data_Access.Configurations.Employees;
+﻿using Data_Access.Configurations.Drivers;
+using Data_Access.Configurations.DriversVehicles;
+using Data_Access.Configurations.Employees;
+using Data_Access.Configurations.Vehicles;
 using Data_Access.Configurations.WebUsers;
+using Data_Access.Entities.DriversVehicles;
 using Data_Access.Entities.Employees;
 using Data_Access.Entities.Users;
+using Data_Access.Entities.Vehicles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -22,9 +27,13 @@ namespace Data_Access.Context
         public DbSet<WebUserProfile> AspNetUserProfiles { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeDetail> EmployeeDetails { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<DriverVehicle> Drivers_Vehicles { get; set; }
 
 
-                
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,6 +51,9 @@ namespace Data_Access.Context
             modelbuilder.ApplyConfiguration(new WebUserProfileConfiguration());
             modelbuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelbuilder.ApplyConfiguration(new EmployeeDetailConfiguration());
+            modelbuilder.ApplyConfiguration(new DriverConfiguration());
+            modelbuilder.ApplyConfiguration(new VehicleConfiguration());
+            modelbuilder.ApplyConfiguration(new DriverVehicleConfiguration());
             
             base.OnModelCreating(modelbuilder);
         }
