@@ -6,12 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.20" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.tools" Version="7.0.20">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
   <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Entities\Abstracts\" />
-    <Folder Include="Entities\Interfaces\" />
-    <Folder Include="Entities\Enums\" />
-    <Folder Include="Entities\Models\" />
     <Folder Include="Helpers\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
