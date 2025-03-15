@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+    <Folder Include="Entities\Abstracts\" />
+    <Folder Include="Entities\Interfaces\" />
+    <Folder Include="Entities\Enums\" />
+    <Folder Include="Entities\Models\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>
