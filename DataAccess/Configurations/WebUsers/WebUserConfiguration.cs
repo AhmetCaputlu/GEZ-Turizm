@@ -21,6 +21,7 @@ namespace DataAccess.Configurations.WebUsers
             builder.Property(x => x.UpdatedID).IsRequired(false).HasMaxLength(36);
             builder.Property(x => x.UpdatedIPAddress).HasMaxLength(20).IsRequired(false);
             builder.Property(x => x.Status).IsRequired(true).HasDefaultValue(DataStatus.Unknown);
+            
             //AspNetUser
             #region Fluent API ile yapılandırma Migration'a yansımıyor.
             //Email ve Kullanıcı Adı ya ilgili attribute yüzünden yapılandırılamıyor ya da
